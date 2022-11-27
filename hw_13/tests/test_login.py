@@ -1,20 +1,21 @@
 import pytest
 
-from hw_13.utilities.read_configs import ReadConfig
-
 
 # login tests
 @pytest.mark.smoke
-def test_login(open_login_link):
+def test_login(open_login_link, env):
     login_link = open_login_link
-    login_link = login_link.login(ReadConfig.get_email(), ReadConfig.get_password())
+    email = env.email
+    password = env.password
+    login_link = login_link.login(email, password)
     assert login_link.is_visible() is True
 
 
 @pytest.mark.smoke
-def test_login_empty_pass(open_login_link):
+def test_login_empty_pass(open_login_link, env):
     login_link = open_login_link
-    login_link = login_link.login_with_empty_password(ReadConfig.get_email())
+    email = env.email
+    login_link = login_link.login_with_empty_password(email)
     assert login_link.required_password_visible() is True
 
 
@@ -26,52 +27,65 @@ def test_login_no_creds(open_login_link):
 
 
 @pytest.mark.smoke
-def test_login_empty_email(open_login_link):
+def test_login_empty_email(open_login_link, env):
     login_link = open_login_link
-    login_link = login_link.login_with_empty_email(ReadConfig.get_password())
+    password = env.password
+    login_link = login_link.login_with_empty_email(password)
     assert login_link.required_email_visible() is True
 
 
 @pytest.mark.smoke
-def test_logout(open_login_link):
+def test_logout(open_login_link,  env):
     login_link = open_login_link
-    logout_link = login_link.logout(ReadConfig.get_email(), ReadConfig.get_password())
+    email = env.email
+    password = env.password
+    logout_link = login_link.logout(email, password)
     assert logout_link.is_invisible() is True
 
 
 # account page tests
 @pytest.mark.regression
-def test_edit_contact_info_visible(open_login_link):
+def test_edit_contact_info_visible(open_login_link, env):
     login_link = open_login_link
-    account_page = login_link.account(ReadConfig.get_email(), ReadConfig.get_password())
+    email = env.email
+    password = env.password
+    account_page = login_link.account(email, password)
     assert account_page.contact_edit_visible() is True
 
 
 @pytest.mark.regression
-def test_welcome_message_visible(open_login_link):
+def test_welcome_message_visible(open_login_link, env):
     login_link = open_login_link
-    account_page = login_link.account(ReadConfig.get_email(), ReadConfig.get_password())
+    email = env.email
+    password = env.password
+    account_page = login_link.account(email, password)
     assert account_page.welcome_message_visible() is True
 
 
 @pytest.mark.regression
-def test_edit_account_title_visible(open_login_link):
+def test_edit_account_title_visible(open_login_link, env):
     login_link = open_login_link
-    account_page = login_link.account(ReadConfig.get_email(), ReadConfig.get_password()).edit_account()
+    email = env.email
+    password = env.password
+    account_page = login_link.account(email, password).edit_account()
     assert account_page.edit_account_title_visible() is True
 
 
 @pytest.mark.regression
-def test_edit_address_page_opened(open_login_link):
+def test_edit_address_page_opened(open_login_link, env):
     login_link = open_login_link
-    account_page = login_link.account(ReadConfig.get_email(), ReadConfig.get_password()).edit_account()
+    email = env.email
+    password = env.password
+    account_page = login_link.account(email, password).edit_account()
     assert account_page.edit_account_title_visible() is True
 
 
 @pytest.mark.regression
-def test_edit_account_title_visible(open_login_link):
+def test_edit_account_title_visible(open_login_link, env):
     login_link = open_login_link
-    account_page = login_link.account(ReadConfig.get_email(), ReadConfig.get_password()).edit_account()
+    email = env.email
+    password = env.password
+    account_page = login_link.account(email, password).edit_account()
     assert account_page.edit_account_title_visible() is True
 
 
@@ -109,7 +123,7 @@ def test_name_field_visible(open_login_link):
 def test_forgot_password_link_present(open_login_link):
     login_link = open_login_link
     login_link = login_link.go_to_login()
-    assert login_link.forgot_password_is_present() is True
+    assert login_link.is_forgot_password_present() is True
 
 
 @pytest.mark.regression
@@ -120,9 +134,10 @@ def test_go_to_forgot_password_page(open_login_link):
 
 
 @pytest.mark.regression
-def test_forgot_password_confirm(open_login_link):
+def test_forgot_password_confirm(open_login_link, env):
     login_link = open_login_link
-    forgot_password_page = login_link.go_to_forgot_password().forgot_password_confirm(ReadConfig.get_email())
+    email = env.email
+    forgot_password_page = login_link.go_to_forgot_password().forgot_password_confirm(email)
     assert forgot_password_page.success_message_visible() is True
 
 
@@ -134,10 +149,10 @@ def test_confirm_forgot_password_empty_email(open_login_link):
 
 
 @pytest.mark.smoke
-def test_confirm_forgot_password_invalid_email(open_login_link):
+def test_confirm_forgot_password_invalid_email(open_login_link, env):
     login_link = open_login_link
-    forgot_password_page = login_link.go_to_forgot_password().forgot_pass_confirm_invalid_email(
-        ReadConfig.get_invalid_email())
+    invalid_email = env.invalid_email
+    forgot_password_page = login_link.go_to_forgot_password().forgot_pass_confirm_invalid_email(invalid_email)
     assert forgot_password_page.validation_email_visible() is True
 
 
