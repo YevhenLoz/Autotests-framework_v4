@@ -18,8 +18,7 @@ def test_go_to_forgot_password_page(open_login_link):
 @pytest.mark.regression
 def test_forgot_password_confirm(open_login_link, env):
     login_link = open_login_link
-    email = env.email
-    forgot_password_page = login_link.go_to_forgot_password().forgot_password_confirm(email)
+    forgot_password_page = login_link.go_to_forgot_password().forgot_password_confirm(env.email)
     assert forgot_password_page.is_success_message_visible() is True
 
 
@@ -33,6 +32,5 @@ def test_confirm_forgot_password_empty_email(open_login_link):
 @pytest.mark.smoke
 def test_confirm_forgot_password_invalid_email(open_login_link, env):
     login_link = open_login_link
-    invalid_email = env.invalid_email
-    forgot_password_page = login_link.go_to_forgot_password().forgot_pass_confirm_invalid_email(invalid_email)
+    forgot_password_page = login_link.go_to_forgot_password().forgot_pass_confirm_invalid_email(env.invalid_email)
     assert forgot_password_page.is_validation_email_visible() is True
