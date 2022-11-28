@@ -16,15 +16,15 @@ class BlogPage(BasePage):
         self._click(self.__locators.blog)
         return self
 
-    def blog_title_is_visible(self):
+    def is_blog_title_visible(self) -> 'bool':
         return self._is_visible(self.__locators.blog_title)
 
     def go_to_blog(self):
         self.click_another_menu().click_blog()
         return BlogPage(self.__driver)
 
-    def post_list_is_visible(self):
+    def is_post_list_visible(self) -> 'bool':
         return self._is_visible(self.__locators.post_list)
 
-    def side_bar_is_visible(self):
+    def is_side_bar_visible(self) -> 'bool':
         return self._is_visible(self.__locators.side_bar)

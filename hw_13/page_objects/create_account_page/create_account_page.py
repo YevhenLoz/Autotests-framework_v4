@@ -8,13 +8,14 @@ class CreateAccount(BasePage):
         super().__init__(driver)
         self.__locators = CreateAccountLocators()
 
-    def create_account_title_visible(self):
+    def is_create_account_title_visible(self) -> 'bool':
         return self._is_visible(self.__locators.account_create_title)
 
     def click_back_to_login(self):
-        return self._click(self.__locators.back_to_login)
+        self._click(self.__locators.back_to_login)
+        return self
 
-    def login_page_title_visible(self):
+    def is_login_page_title_visible(self) -> 'bool':
         return self._is_visible(self.__locators.login_page_title)
 
     def go_back_to_login(self):
@@ -22,14 +23,15 @@ class CreateAccount(BasePage):
         return CreateAccount(self.__driver)
 
     def click_submit_button(self):
-        return self._click(self.__locators.submit_button)
+        self._click(self.__locators.submit_button)
+        return self
 
-    def name_required(self):
+    def is_name_required_visible(self) -> 'bool':
         return self._is_visible(self.__locators.validation_name)
 
     def submit_without_name(self):
         self.click_submit_button()
         return CreateAccount(self.__driver)
 
-    def name_field_visible(self):
+    def is_name_field_visible(self) -> 'bool':
         return self._is_visible(self.__locators.input_name())

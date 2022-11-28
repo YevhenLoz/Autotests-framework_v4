@@ -40,11 +40,9 @@ def create_driver(env):
     :param env: base_url
     :return: driver
     """
-    browser = env.browser_id
-    get_base_url = env.base_url
-    driver = DriverFactory.create_driver(browser)
+    driver = DriverFactory.create_driver(env.browser_id)
     driver.maximize_window()
-    driver.get(get_base_url)
+    driver.get(env.base_url)
     yield driver
     driver.quit()
 
@@ -67,3 +65,4 @@ def open_blog_page(create_driver):
     :return: BlogPage
     """
     return BlogPage(create_driver)
+

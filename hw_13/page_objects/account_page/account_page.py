@@ -8,37 +8,39 @@ class AccountPage(BasePage):
         super().__init__(driver)
         self.__locators = AccountPageLocators()
 
-    def contact_edit_visible(self):
+    def is_contact_edit_visible(self) -> 'bool':
         return self._is_visible(self.__locators.edit_contact_info)
 
-    def required_password_visible(self):
+    def is_required_password_visible(self) -> 'bool':
         return self._is_visible(self.__locators.required_password)
 
-    def required_email_visible(self):
+    def is_required_email_visible(self) -> 'bool':
         return self._is_visible(self.__locators.required_email)
 
-    def welcome_message_visible(self):
+    def is_welcome_message_visible(self) -> 'bool':
         return self._is_visible(self.__locators.welcome_message)
 
     def click_edit(self):
-        return self._click(self.__locators.edit_contact_info)
+        self._click(self.__locators.edit_contact_info)
+        return self
 
     def click_edit_address(self):
-        return self._click(self.__locators.address_edit)
+        self._click(self.__locators.address_edit)
+        return self
 
     def edit_account(self):
         self.click_edit()
         return AccountPage(self.__driver)
 
-    def edit_account_title_visible(self):
+    def is_edit_account_title_visible(self) -> 'bool':
         return self._is_visible(self.__locators.edit_account_title)
 
     def edit_address(self):
         self.click_edit_address()
         return AccountPage(self.__driver)
 
-    def edit_address_link(self):
+    def is_edit_address_link_visible(self) -> 'bool':
         return self._is_visible(self.__locators.address_edit)
 
-    def edit_address_title_visible(self):
+    def is_edit_address_title_visible(self) -> 'bool':
         return self._is_visible(self.__locators.address_edit_title)

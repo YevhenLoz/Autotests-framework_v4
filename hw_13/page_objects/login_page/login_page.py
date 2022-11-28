@@ -39,16 +39,17 @@ class LoginLink(BasePage):
         self._click(self.__locators.cabinet)
         return self
 
-    def is_visible(self):
+    def is_logout_link_visible(self) -> 'bool':
         return self._is_visible(self.__locators.logout_link)
 
-    def forgot_password_is_present(self):
+    def is_forgot_password_present(self) -> 'bool':
         return self._is_visible(self.__locators.forgot_password)
 
     def click_forgot_password(self):
-        return self._click(self.__locators.forgot_password)
+        self._click(self.__locators.forgot_password)
+        return self
 
-    def is_invisible(self):
+    def is_logout_link_invisible(self) -> 'bool':
         return self._is_invisible(self.__locators.logout_link)
 
     def login(self, email, password):
