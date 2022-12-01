@@ -1,6 +1,8 @@
 import json
 import pytest
 from hw_13.CONSTANTS import ROOT_DIR
+from hw_13.data_classes.post import Post
+from hw_13.data_classes.user import User
 from hw_13.page_objects.blog_page.blog_page import BlogPage
 from hw_13.page_objects.login_page.login_page import LoginLink
 from hw_13.utilities.configuration import Configuration
@@ -66,3 +68,12 @@ def open_blog_page(create_driver):
     """
     return BlogPage(create_driver)
 
+
+@pytest.fixture()
+def create_person():
+    return User()
+
+
+@pytest.fixture()
+def create_post():
+    return Post()
