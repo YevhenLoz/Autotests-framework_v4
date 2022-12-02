@@ -1,4 +1,4 @@
 pytest
-selenium==4.6.1
+selenium==4.7.0
 webdriver-manager
 requests
