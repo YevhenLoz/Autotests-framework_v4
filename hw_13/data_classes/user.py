@@ -1,10 +1,11 @@
 import json
+import secrets
 
 
 class User:
     def __init__(self, **kwargs):
-        self.name = "John Left" if "name" not in kwargs.keys() else kwargs["name"]
-        self.email = "oko@gmail.com" if "email" not in kwargs.keys() else kwargs["email"]
+        self.name = "John Clone" if "name" not in kwargs.keys() else kwargs["name"]
+        self.email = f"{secrets.token_hex(8)}@gmail.com" if "email" not in kwargs.keys() else kwargs["email"]
         self.gender = "male" if "gender" not in kwargs.keys() else kwargs["gender"]
         self.status = "active" if "status" not in kwargs.keys() else kwargs["status"]
 

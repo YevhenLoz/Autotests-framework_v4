@@ -1,4 +1,5 @@
 import json
+from contextlib import suppress
 import pytest
 from hw_13.CONSTANTS import ROOT_DIR
 from hw_13.data_classes.post import Post
@@ -7,6 +8,7 @@ from hw_13.page_objects.blog_page.blog_page import BlogPage
 from hw_13.page_objects.login_page.login_page import LoginLink
 from hw_13.utilities.configuration import Configuration
 from hw_13.utilities.driver_factory import DriverFactory
+import allure
 
 
 def pytest_configure(config):
@@ -35,8 +37,16 @@ def env():
     return configs
 
 
-@pytest.fixture
-def create_driver(env):
+@pytest.hookimpl(hookwrapper=True, tryfirst=True)
+def pytest_runtest_makereport(item, call):
+    outcome = yield
+    rep = outcome.get_result()
+    setattr(item, "rep_" + rep.when, rep)
+    return rep
+
+
+@pytest.fixture()
+def create_driver(env, request):
     """
     This fixture creates friver
     :param env: base_url
@@ -46,6 +56,11 @@ def create_driver(env):
     driver.maximize_window()
     driver.get(env.base_url)
     yield driver
+    if request.node.rep_call.failed:
+        with suppress(Exception):
+            allure.attach(driver.get_screenshot_as_png(), name=request.function.__name__,
+                          attachment_type=allure.attachment_type.PNG)
+
     driver.quit()
 
 
@@ -70,7 +85,7 @@ def open_blog_page(create_driver):
 
 
 @pytest.fixture()
-def create_person():
+def create_user():
     return User()
 
 
