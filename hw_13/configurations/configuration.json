@@ -1,0 +1,8 @@
+{
+"base_url": "https://estore.ua/ua",
+"email": "y.lozovatskyi@gmail.com",
+"password": "Autotest777",
+"invalid_email": "email@example@example.com",
+"name": "John",
+"browser_id" : "1"
+}
