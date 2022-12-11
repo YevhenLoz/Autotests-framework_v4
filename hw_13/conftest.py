@@ -2,6 +2,7 @@ import json
 from contextlib import suppress
 import pytest
 from hw_13.CONSTANTS import ROOT_DIR
+from hw_13.api_collections.posts_api import PostAPI
 from hw_13.data_classes.post import Post
 from hw_13.data_classes.user import User
 from hw_13.page_objects.blog_page.blog_page import BlogPage

@@ -1,3 +1,5 @@
+import json
+
 from hw_13.data_classes.post import Post
 from hw_13.utilities.api.BaseAPI import BaseAPI
 import allure
@@ -23,3 +25,5 @@ class PostAPI(BaseAPI):
     @allure.step
     def get_post_by_id(self, user_id, headers=None):
         return self.get(f'{self.__url}/{user_id}', headers=headers)
+
+

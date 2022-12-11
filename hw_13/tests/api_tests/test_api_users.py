@@ -27,13 +27,12 @@ def test_get_user_by_id():
         id_list.append(users_id)
     user_id = id_list[0]
     response2 = UsersAPI().get_user_by_id(user_id)
-    c = 0
     assert response2.status_code == HTTPStatus.OK
 
 
 @pytest.mark.smoke
 def test_user_data(create_user):
-    expected_person = create_user
+    expected_user = create_user
     response = UsersAPI().get_all_users()
     data = json.loads(response.text)
     id_list = []
@@ -43,8 +42,8 @@ def test_user_data(create_user):
     user_id = id_list[0]
     response2 = UsersAPI().get_user_by_id(user_id)
     user_data = json.loads(response2.text)
-    actual_person = User.from_json(**user_data)
-    assert actual_person == expected_person
+    actual_user = User.from_json(**user_data)
+    assert actual_user == expected_user
 
 
 def test_delete_user_by_id():
@@ -54,6 +53,6 @@ def test_delete_user_by_id():
     for s in data:
         users_id = s['id']
         id_list.append(users_id)
-    user_id = id_list[1]
+    user_id = id_list[0]
     response2 = UsersAPI().delete_user_by_id(user_id)
     assert response2.status_code == HTTPStatus.NO_CONTENT
