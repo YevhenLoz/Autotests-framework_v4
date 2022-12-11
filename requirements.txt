@@ -5,5 +5,5 @@ requests
 allure-pytest
 pony
 psycopg2-binary
-
+prettytable
 

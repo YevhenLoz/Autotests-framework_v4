@@ -1,5 +1,9 @@
+from prettytable import PrettyTable
+import sys
 from pony.orm import db_session, left_join
 from hw_13.db.models.models import Products
+import os
+import webbrowser
 
 
 class ProductRepository:
@@ -11,13 +15,31 @@ class ProductRepository:
         self.__model(name=name, price=price)
 
     @db_session
-    def left_join(self):
-        results = left_join((products, orders) for products in self.__model for orders in products.orders)
-        for result in results:
-            products = result[0]
-            orders = result[1]
-            print(f"id: {products.id}, name: {products.name}, price:{products.price} quantity: {orders.quantity}, "
-                  f"total: {products.price * orders.quantity}")
+    def left_join(self, original_stdout=sys.stdout):
+        with open('join_table.csv', 'w') as f:
+            sys.stdout = f
+            results = left_join((products, orders) for products in self.__model for orders in
+                                products.orders)
+            print("id", "name", "price", "quantity", "total", sep=",", file=f)
+            for result in results:
+                products = result[0]
+                orders = result[1]
+                print(f"{products.id}, {products.name}, {products.price}, {orders.quantity},"
+                      f"{products.price * orders.quantity}", file=f)
+                sys.stdout = original_stdout
+
+    a = open("join_table.csv", 'r')
+    a = a.readlines()
+    l1 = a[0]
+    l1 = l1.split(",")
+    t = PrettyTable([l1[0], l1[1], l1[2], l1[3], l1[4]])
+    for i in range(1, len(a)):
+        t.add_row(a[i].split(','))
+    code = t.get_html_string()
+    html_file = open('Table.html', 'w')
+    html_file = html_file.write(code)
+    filename = 'file:///' + os.getcwd() + '/' + 'Table.html'
+    webbrowser.open_new_tab(filename)
 
 
 if __name__ == '__main__':
