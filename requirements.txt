@@ -1,3 +1,5 @@
 pytest
-selenium
+selenium==4.7.2
 webdriver-manager
+requests
+allure-pytest
