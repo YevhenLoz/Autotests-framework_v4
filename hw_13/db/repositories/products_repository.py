@@ -16,7 +16,7 @@ class ProductRepository:
 
     @db_session
     def left_join(self, original_stdout=sys.stdout):
-        with open('join_table.csv', 'w') as f:
+        with open('join.csv', 'w') as f:
             sys.stdout = f
             results = left_join((products, orders) for products in self.__model for orders in
                                 products.orders)
@@ -28,18 +28,18 @@ class ProductRepository:
                       f"{products.price * orders.quantity}", file=f)
                 sys.stdout = original_stdout
 
-    a = open("join_table.csv", 'r')
-    a = a.readlines()
-    l1 = a[0]
-    l1 = l1.split(",")
-    t = PrettyTable([l1[0], l1[1], l1[2], l1[3], l1[4]])
-    for i in range(1, len(a)):
-        t.add_row(a[i].split(','))
-    code = t.get_html_string()
-    html_file = open('Table.html', 'w')
-    html_file = html_file.write(code)
-    filename = 'file:///' + os.getcwd() + '/' + 'Table.html'
-    webbrowser.open_new_tab(filename)
+        to_csv = open('join.csv', 'r')
+        to_csv = to_csv.readlines()
+        tab_data = to_csv[0]
+        tab_data = tab_data.split(",")
+        table = PrettyTable([tab_data[0], tab_data[1], tab_data[2], tab_data[3], tab_data[4]])
+        for i in range(1, len(to_csv)):
+            table.add_row(to_csv[i].split(','))
+        code = table.get_html_string()
+        html_file = open('Table.html', 'w')
+        html_file.write(code)
+        filename = 'file:///' + os.getcwd() + '/' + 'Table.html'
+        webbrowser.open_new_tab(filename)
 
 
 if __name__ == '__main__':
