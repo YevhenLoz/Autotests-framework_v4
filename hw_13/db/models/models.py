@@ -19,4 +19,4 @@ class Orders(db.Entity):
     products = Required(Products, column="product_id")
 
 
-db.generate_mapping(create_tables=True)
+db.generate_mapping(create_tables=False)
