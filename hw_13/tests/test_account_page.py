@@ -8,7 +8,7 @@ def test_edit_contact_info_visible(open_login_link, env):
     assert account_page.is_contact_edit_visible() is True
 
 
-@pytest.mark.skip('Skipped test')
+
 def test_welcome_message_visible(open_login_link, env):
     login_link = open_login_link
     account_page = login_link.account(env.email, env.password)
