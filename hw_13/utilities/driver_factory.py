@@ -12,10 +12,10 @@ class DriverFactory:
     EDGE = 3
 
     @staticmethod
-    def create_driver(driver_id: int, headless=True):
+    def create_driver(driver_id: int, is_headless=True):
         if int(driver_id) == DriverFactory.CHROME:
             chrome_options = Options()
-            if headless:
+            if is_headless:
                 chrome_options.add_argument("--headless")
                 chrome_options.add_argument("--no-sandbox")
             driver = Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
