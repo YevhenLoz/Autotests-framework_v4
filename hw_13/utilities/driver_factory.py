@@ -18,7 +18,6 @@ class DriverFactory:
             if headless:
                 chrome_options.add_argument("--headless")
                 chrome_options.add_argument("--no-sandbox")
-                chrome_options.add_argument("--disable-dev-shm-usage")
             driver = Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
         elif int(driver_id) == DriverFactory.FIREFOX:
             driver = Firefox(service=Service(GeckoDriverManager().install()))
