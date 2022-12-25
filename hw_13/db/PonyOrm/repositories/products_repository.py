@@ -1,9 +1,9 @@
 from prettytable import PrettyTable
 import sys
 from pony.orm import db_session, left_join
-from hw_13.db.models.models import Products
 import os
 import webbrowser
+from hw_13.db.PonyOrm.models.models import Products
 
 
 class ProductRepository:

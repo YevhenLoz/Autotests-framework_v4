@@ -6,7 +6,7 @@ from selenium.common.exceptions import TimeoutException
 class BasePage:
     def __init__(self, driver):
         self._driver = driver
-        self.__wait = WebDriverWait(self._driver, 5)
+        self.__wait = WebDriverWait(self._driver, 60)
 
     def __wait_until_element_located(self, locator):
         return self.__wait.until(EC.presence_of_element_located(locator))

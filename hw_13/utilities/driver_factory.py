@@ -12,11 +12,14 @@ class DriverFactory:
     EDGE = 3
 
     @staticmethod
-    def create_driver(driver_id: int, is_headless=False):
+    def create_driver(driver_id: int, headless=True):
         if int(driver_id) == DriverFactory.CHROME:
             chrome_options = Options()
-            if is_headless:
+            if headless:
                 chrome_options.add_argument("--headless")
+                chrome_options.add_argument("--no-sandbox")
+                chrome_options.add_argument('--allow-running-insecure-content')
+                chrome_options.add_argument("--window-size=1920x1080")
             driver = Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
         elif int(driver_id) == DriverFactory.FIREFOX:
             driver = Firefox(service=Service(GeckoDriverManager().install()))
