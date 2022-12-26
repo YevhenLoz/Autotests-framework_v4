@@ -25,5 +25,3 @@ class PostAPI(BaseAPI):
     @allure.step
     def get_post_by_id(self, user_id, headers=None):
         return self.get(f'{self.__url}/{user_id}', headers=headers)
-
-
