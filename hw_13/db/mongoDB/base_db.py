@@ -18,8 +18,8 @@ class BaseDb:
     def insert_one(self, key: str, value: str):
         self._collection.insert_one({key: value})
 
-    def insert_many(self, key1: str, value1: str, key2: str, value2: str):
-        self._collection.insert_many([{key1: value1}, {key2: value2}])
+    def insert_many(self, *dicts):
+        self._collection.insert_many(dicts)
 
     def find_all(self):
         result = self._collection.find({})
