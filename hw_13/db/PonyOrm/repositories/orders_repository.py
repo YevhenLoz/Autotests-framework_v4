@@ -1,5 +1,6 @@
 from pony.orm import db_session
-from hw_13.db.models.models import Orders
+
+from hw_13.db.PonyOrm.models.models import Orders
 
 
 class OrderRepository:
