@@ -18,7 +18,7 @@ if __name__ == '__main__':
     # Collection().insert_one('QA5', 'Ivan')
     # Collection().insert_one('QA1', 'Yevhen')
     # Collection().insert_one('QA4', 'Roman')
-    # Collection().insert_many('QA2', 'Iryna', 'QA3', 'Bogdan')
+    # Collection().insert_many({'QA2': 'Iryna'}, {'QA3': 'Bogdan'})
     # cursor = list(Collection().find_all())
     # print(cursor)
     # cursor = list(Collection().find_one('QA1', 'Yevhen'))
