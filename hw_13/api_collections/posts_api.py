@@ -11,6 +11,7 @@ class PostAPI(BaseAPI):
         self.__url = '/public/v2/posts'
         self.__url2 = '/public/v2/users/142/posts'
 
+
     @allure.step
     def get_user_posts(self, headers=None):
         return self.get(f'{self.__url}', headers=headers)
