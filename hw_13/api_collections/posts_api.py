@@ -9,7 +9,7 @@ class PostAPI(BaseAPI):
     def __init__(self):
         super().__init__()
         self.__url = '/public/v2/posts'
-        self.__url2 = '/public/v2/users/142/posts'
+        self.__url2 = '/public/v2/users/144/posts'
 
 
     @allure.step
