@@ -8,3 +8,4 @@ pony
 psycopg2-binary
 prettytable
 pymongo
+pytest-allure-adaptor
