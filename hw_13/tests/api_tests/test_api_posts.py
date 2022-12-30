@@ -30,6 +30,7 @@ def test_get_post_by_id():
     response2 = PostAPI().get_post_by_id(user_id)
     assert response2.status_code == HTTPStatus.OK
 
+
 @pytest.mark.smoke
 def test_posts_data(create_post):
     expected_post = create_post

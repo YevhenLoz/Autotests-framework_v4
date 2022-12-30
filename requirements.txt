@@ -7,3 +7,4 @@ pony
 psycopg2-binary
 prettytable
 pymongo
+pytest-xdist
