@@ -15,10 +15,10 @@ def test_go_to_forgot_password_page(open_login_link):
     assert forgot_password_page.is_forgot_password_page_title_visible() is True
 
 
-# def test_forgot_password_confirm(open_login_link, env):
-#     login_link = open_login_link
-#     forgot_password_page = login_link.go_to_forgot_password().forgot_password_confirm(env.email)
-#     assert forgot_password_page.is_success_message_visible() is True
+def test_forgot_password_confirm(open_login_link, env):
+    login_link = open_login_link
+    forgot_password_page = login_link.go_to_forgot_password().forgot_password_confirm(env.email)
+    assert forgot_password_page.is_success_message_visible() is True
 
 
 def test_confirm_forgot_password_empty_email(open_login_link):
